@@ -21,10 +21,11 @@ class Connect4():
             print(self.board[i])
     
     def playTurn(self, column):
-        fill = self.column_counts[column]
         if column < 0 or column > self.width - 1:
             print('Not a viable turn')
             return
+
+        fill = self.column_counts[column]
         if fill > self.height - 1:
             print('Column is already filled')
             return
