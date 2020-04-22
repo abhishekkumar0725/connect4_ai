@@ -92,12 +92,27 @@ class Connect4():
                 player = 0
         return player
     
-    def playGame(self):
+    def botTurn(self):
+        best_move = 0
+        self.playTurn(best_move)
+    
+    def play2Player(self):
         while not self.gameOver:
             column = input('Enter column to insert piece:')
             column = int(column)
             self.playTurn(column)
             self.checkWin()
+    
+    def play1Player(self):
+        while not self.gameOver:
+            if(self.turn == 1):
+                column = input('Enter column to insert piece:')
+                column = int(column)
+                self.playTurn(column)
+                self.checkWin()
+            else:
+                self.botTurn()
+                self.checkWin()
 
 game = Connect4()
-game.playGame()
+game.play1Player()
