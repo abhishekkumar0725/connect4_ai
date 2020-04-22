@@ -41,11 +41,13 @@ class Connect4:
         if column < 0 or column > self.width - 1:
             if human:
                 print('Not a viable turn')
+                return
 
         fill = self.column_counts[column]
         if fill > self.height - 1:
             if human:
                 print('Column is already filled')
+                return
 
         self.board[self.height-1-fill][column] = self.turn
         self.column_counts[column] += 1
