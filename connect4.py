@@ -55,16 +55,18 @@ class Connect4():
                     player = self.board[r][c]
                     if self.board[r+1][c+1] == player and self.board[r+2][c+2] == player and self.board[r+3][c+3] == player:
                         return player
+                player = 0
         return player
             
     def checkBackwardDiag(self):
         player = 0
         for c in range(3, self.width):
-            for r in range(3, self.height):
+            for r in range(self.height-3):
                 if self.board[r][c] != 0:
                     player = self.board[r][c]
                     if self.board[r-1][c-1] == player and self.board[r-2][c-2] == player and self.board[r-3][c-3] == player:
                         return player
+                player = 0
         return player
 
     def checkHorizontal(self):
@@ -75,6 +77,7 @@ class Connect4():
                     player = self.board[r][c]
                     if self.board[r][c+1] == player and self.board[r][c+2] == player and self.board[r][c+3] == player:
                         return player
+                player = 0
         return player
 
     def checkVertical(self):
@@ -85,14 +88,15 @@ class Connect4():
                     player = self.board[r][c]
                     if self.board[r+1][c] == player and self.board[r+2][c] == player and self.board[r+3][c] == player:
                         return player
+                player = 0
         return player
+    
+    def playGame(self):
+        while not self.gameOver:
+            column = input('Enter column to insert piece:')
+            column = int(column)
+            self.playTurn(column)
+            self.checkWin()
 
 game = Connect4()
-for i in range(4):
-    game.playTurn(i)
-    print('\n')
-
-    game.playTurn(i+1)
-    print('\n')
-
-game.checkWin()
+game.playGame()
